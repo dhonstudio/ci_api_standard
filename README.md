@@ -41,6 +41,9 @@ Definition
 ```
 api_users [table]   table that must exist, because this API connection use HTTP Basic Authentication
 (your_version)      migration version that commonly named using date (start from year, ex. '202204060859')
+(api_command)       any command that can called from API connection
+(your_db_string)    db string name in `$db[]`
+(your_table)        name of your table
 ```
 
 Create Migration
@@ -77,3 +80,36 @@ To creating migration, you first must to create production and testing database 
     $this->migration->dhonmigrate->create_table()   to finish your table creation
     $this->migration->dhonmigrate->insert([])       to insert some data to your table, fill with Array adapted your database
     ```
+
+Connect to API (GET)
+--------------------
+
+First you must setup your `Api` controller, in function `index`. In line 27, set up with string name of your database that contains `api_users` table.
+
+For testing connection your API, run this method:
+
+- In localhost:
+    `http://localhost/ci_api_standard/ + (your_db_string) + '/' + (your_table) + (api_command)`
+
+- In your hosting:
+    `https://your_api_domain.com/ + (your_db_string) + '/' + (your_table) + (api_command)`
+
+### (api_command)
+
+```
+(empty)                                         get all data from your table
+?(column_name)=(value)                          get data from selected column based on (value)
+?(column_name)__more=(value)                    get data from selected column where more than (value)
+?(column_name)__less=(value)                    get data from selected column where less than (value)
+?keyword=(value)                                find data contains (value)
+?limit=(limit_value)                            get data with limitation, for jump to any page, use `&offset=(page)`
+?sort_by=(column_name)&sort_method=(asc/desc)   get data from selected column with sort method (asc/desc)
+/password_verify?                               validate password `true` or `false`, add `(column_name)=(value)&(password_column_name)=(password_value)` after `?`
+/delete/(data_id)                               delete your data base on (data_id)
+
+```
+
+Connect to API (POST)
+---------------------
+
+Same with GET method, but with adding POST request.

@@ -15,9 +15,9 @@ class Migration_Custom {
     public function up()
     {
         /*
-        | -------------------------------------------------------------------
+        | ----------------
         |  Api_users table
-        | -------------------------------------------------------------------
+        | ----------------
         */
         $this->migration->dhonmigrate->table = 'api_users';
         $this->migration->dhonmigrate->ai()->field('id_user', 'INT');
