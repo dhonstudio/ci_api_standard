@@ -5,10 +5,12 @@ class Migration_Custom {
     public function __construct(string $database)
 	{
         $this->migration =& get_instance();
+
+        $this->load->helper('libraries');
         
         $this->database = $database;
         $this->dev      = false;
-        require_once __DIR__ . '/../../assets/ci_libraries/DhonMigrate.php';
+        
 		$this->migration->dhonmigrate = new DhonMigrate($this->database);
     }
     
@@ -25,7 +27,7 @@ class Migration_Custom {
         $this->migration->dhonmigrate->constraint('200')->field('password', 'VARCHAR');
         $this->migration->dhonmigrate->field('stamp', 'INT');
         $this->migration->dhonmigrate->add_key('id_user');
-        $this->migration->dhonmigrate->create_table();
+        $this->migration->dhonmigrate->create_table('force');
 
         $this->migration->dhonmigrate->insert([
             'username' => 'admin', 

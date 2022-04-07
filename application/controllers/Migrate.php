@@ -6,11 +6,7 @@ class Migrate extends CI_Controller
 	{
 		parent::__construct();
 
-        require_once __DIR__ . '/../../assets/ci_libraries/DhonAuth.php';
-        require_once __DIR__ . '/../../assets/ci_libraries/DhonJSON.php';
-        require_once __DIR__ . '/../../assets/ci_libraries/DhonMigrate.php';
-		$this->dhonauth     = new DhonAuth;
-		$this->dhonjson     = new DhonJSON;
+        $this->load->helper('libraries');
 
         /*
         | ------------------------------------------------------------------
