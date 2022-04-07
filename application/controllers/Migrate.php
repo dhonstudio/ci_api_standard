@@ -8,6 +8,9 @@ class Migrate extends CI_Controller
 
         $this->load->helper('libraries');
 
+        $this->dhonauth = new DhonAuth;
+		$this->dhonjson = new DhonJSON;
+
         /*
         | ------------------------------------------------------------------
         |  Set up API User Database, Migration Database, and Migration Class

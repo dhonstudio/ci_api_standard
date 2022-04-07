@@ -10,6 +10,9 @@ class Api extends CI_Controller {
 		parent::__construct();
 
 		$this->load->helper('libraries');
+
+		$this->dhonauth = new DhonAuth;
+		$this->dhonjson = new DhonJSON;
 	}
 
 	public function index()
