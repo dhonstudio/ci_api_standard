@@ -6,7 +6,7 @@ class Migration_Custom {
 	{
         $this->migration =& get_instance();
 
-        $this->load->helper('libraries');
+        $this->migration->load->helper('libraries');
         
         $this->database = $database;
         $this->dev      = false;
