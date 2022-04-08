@@ -135,7 +135,7 @@ For testing connection your API, run this method:
 ?(column_name)__more=(value)                    get data from selected column where more than (value)
 ?(column_name)__less=(value)                    get data from selected column where less than (value)
 ?keyword=(value)                                find data contains (value)
-?limit=(limit_value)                            get data with limitation, for jump to any page, use `&offset=(page)`
+?limit=(limit_value)                            get data with limitation, for jump to any page, use `&offset=(page-1)`
 ?sort_by=(column_name)&sort_method=(asc/desc)   get data from selected column with sort method (asc/desc)
 /password_verify?                               validate password `true` or `false`, add `(column_name)=(value)&(password_column_name)=(password_value)` after `?`
 /delete/(data_id)                               delete your data base on (data_id)
