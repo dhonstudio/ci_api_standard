@@ -145,4 +145,4 @@ For testing connection your API, run this method:
 Connect to API (POST)
 ---------------------
 
-Same with GET method, but with adding POST request.
+Same with GET method, but with adding POST request. For update your data by ID (like a PUT method), add your ID_column_name and ID_value in your data post.
