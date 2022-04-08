@@ -67,18 +67,51 @@ To creating migration, you first must to create production and testing database 
     - Change `class Migration_Custom` (line 3) to `class Migration_(name of your migration | capitalize)`.
     - Default existed table in migration file is `api_users` (look up in Definition section). You can setup your HTTP Basic Authentication in line 31 (for username) and line 32 (for password). Change `admin` to everything that you want and that you felt secure.
 
-4. If you want to make one/some table in your database with migration, create these code before line of `if ($this->dev == false) $this->_dev();` (before line 35):
+4. If you want to make one/some table in your database with migration, create these code in `up` function before line of `if ($this->dev == false) $this->_dev();` (before line 35):
 
     ```
-    $this->migration->dhonmigrate->table            to name your table, must exist in first line of your migration code
-    $this->migration->dhonmigrate->ai()             to set your column AUTO-INCREMENT, usually used for ID
+    $this->migration->dhonmigrate->table                    to name your table, must exist in first line of your migration code
+    $this->migration->dhonmigrate->ai()                     to set your column AUTO-INCREMENT, usually used for ID
+    $this->migration->dhonmigrate->unique()                 to set your column UNIQUE
+    $this->migration->dhonmigrate->constraint('')           to set max value of your column, fill with number as string
+    $this->migration->dhonmigrate->default('')              to set default value of your column, fill with string
+    $this->migration->dhonmigrate->field('')                to finish making your column, fill with `name of your column` | `type data` | `nullable`
+    $this->migration->dhonmigrate->add_key('')              to set any column as PRIMARY KEY, fill with string name of your selected column
+    $this->migration->dhonmigrate->create_table()           to finish your table creation
+    $this->migration->dhonmigrate->create_table('force')    to force overwrite your table (drop and create new table, will delete your data)
+    $this->migration->dhonmigrate->insert([])               to insert some data to your table, fill with Array adapted your database
+    ```
+
+5. If you want to update your table with migration without affect your data, create these code in `change` function:
+
+    Add Column:
+    ```
+    $this->migration->dhonmigrate->table            to name your table that will updated, must exist in first line of your migration code
     $this->migration->dhonmigrate->unique()         to set your column UNIQUE
     $this->migration->dhonmigrate->constraint('')   to set max value of your column, fill with number as string
     $this->migration->dhonmigrate->default('')      to set default value of your column, fill with string
     $this->migration->dhonmigrate->field('')        to finish making your column, fill with `name of your column` | `type data` | `nullable`
-    $this->migration->dhonmigrate->add_key('')      to set any column as PRIMARY KEY, fill with string name of your selected column
-    $this->migration->dhonmigrate->create_table()   to finish your table creation
-    $this->migration->dhonmigrate->insert([])       to insert some data to your table, fill with Array adapted your database
+    $this->migration->dhonmigrate->add_field()      to finish your column adding
+    ```
+
+    Change Column:
+    ```
+    $this->migration->dhonmigrate->table            to name your table that will updated, must exist in first line of your migration code
+    $this->migration->dhonmigrate->unique()         to set your column UNIQUE
+    $this->migration->dhonmigrate->constraint('')   to set max value of your column, fill with number as string
+    $this->migration->dhonmigrate->default('')      to set default value of your column, fill with string
+    $this->migration->dhonmigrate->field('')        to finish changing your column, fill with `name of your column` | `type data` | `nullable`
+    $this->migration->dhonmigrate->field([array])   to finish changing your column, fill with [`name of your old column name`,`name of your new column name`] | `type data` | `nullable`
+    $this->migration->dhonmigrate->change_field()   to finish your column changing
+    ```
+
+    Then change `index` function in `Migrate` controller on this section of code: `$this->dhonmigrate->migrate($this->migration, 'change');`.
+
+6. If you want to delete one/some of column in your table with migration, create these code in `drop` function:
+    
+    ```
+    $this->migration->dhonmigrate->table            to name your table that will updated, must exist in first line of your migration code
+    $this->migration->dhonmigrate->drop_field('')   to delete your selected column, fill with `name of your column`
     ```
 
 Connect to API (GET)

@@ -34,6 +34,11 @@ class Migrate extends CI_Controller
 
     public function index()
     {
+        /*
+        | -------------------------
+        |  Set up Migration Method ('', 'change', or 'drop')
+        | -------------------------
+        */
         $this->dhonmigrate->migrate($this->migration);
 
         $response   = 'Migration success';
