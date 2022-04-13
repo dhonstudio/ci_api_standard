@@ -9,10 +9,18 @@ class Api extends CI_Controller {
 	{
 		parent::__construct();
 
+		$this->path = ENVIRONMENT == 'development' ? 		
+		/*
+        | -------------------------
+        |  Set up Path to Assets
+        | -------------------------
+        */
+		/* Development */	'/../../':
+		/* Production */ 	'../../../../';
+		
 		$this->load->helper('libraries');
-
-		$this->dhonauth = new DhonAuth;
-		$this->dhonjson = new DhonJSON;
+		
+		load_library(['dhonauth', 'dhonjson']);
 	}
 
 	public function index()

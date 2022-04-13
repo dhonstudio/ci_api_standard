@@ -117,7 +117,7 @@ To creating migration, you first must to create production and testing database 
 Connect to API (GET)
 --------------------
 
-First you must setup your `Api` controller, in function `index`. In line 27, set up with string name of your database that contains `api_users` table.
+First you must setup your `Api` controller, in function `index`. In line 35, set up with string name of your database that contains `api_users` table.
 
 For testing connection your API, run this method:
 
